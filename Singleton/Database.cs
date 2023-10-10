@@ -11,9 +11,15 @@ namespace Singleton
     {
 
         private char[] tab = new char[100];
-        private static Database database = new Database();
+        private static Database database;
+        private Database()
+        { }
         public static IConnection GetConnection()
         {
+            if(database == null)
+            {
+                database = new Database();
+            }
             return Connection.getInstance();
         }
 
